@@ -13,14 +13,28 @@
    name
    "!"))
 
+(defn print-hello [name]
+  (println (greeting name)))
+
+(defn print-goodbye [name]
+  (println (str "Adios " name)))
+
+(defn reverse-string [s]
+  (apply str (reverse s)))
+
+(defn print-oche [line]
+  (let [rev (reverse-string line)]
+    (println rev)
+    (when (= line rev) (println "¡Bonita palabra!"))))
+
+(defn exit? [line]
+  (= "Stop!" line))
+
 (defn main [& args]
   (let [name (first args)]
-    (println (greeting name))
+    (print-hello name)
     (loop [line (read-line)]
-      (if (= "Stop!" line)
-        (println (str "Adios " name))
-        (do
-          (let [rev (apply str (reverse line))]
-            (println rev)
-            (when (= line rev) (println "¡Bonita palabra!")))
-          (recur (read-line)))))))
+      (if (exit? line)
+        (print-goodbye name)
+        (do (print-oche line)
+            (recur (read-line)))))))
