@@ -1,5 +1,7 @@
 * ohce kata
 
+[[http://garajeando.blogspot.com.es/2016/05/the-ohce-kata-short-and-simple-exercise.html][origen kata]]
+
 *ohce* is a console application that echoes the reverse of what you input through the console.
 
 Even though it seems a silly application, **ohce** knows a thing or two.
