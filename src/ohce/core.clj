@@ -3,13 +3,17 @@
 (defn hour-now []
   (.get (java.util.Calendar/getInstance) java.util.Calendar/HOUR_OF_DAY))
 
+(defn greeting-hour [hour]
+  (cond
+    (or (< hour 6) (>= hour 20)) "Buenas noches"
+    (<= 6 hour 11) "Buenos días"
+    (<= 12 hour 19) "Buenas tardes"))
+
 (defn greeting [name]
   (str
-   (let [hour (hour-now)]
-     (cond
-       (or (< hour 6) (>= hour 20)) "¡Buenas noches "
-       (<= 6 hour 11) "¡Buenos días "
-       (<= 12 hour 19) "¡Buenas tardes "))
+   "¡"
+   (greeting-hour (hour-now))
+   " "
    name
    "!"))
 
