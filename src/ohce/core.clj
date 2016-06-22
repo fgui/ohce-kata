@@ -12,10 +12,11 @@
   )
 
 (defn main [& args]
-
-  (println (str (greeting (get-hour-now)) (first args) "!"))
-  (loop [line (read-line)]
-    (if (= "Stop!" line)
-      (println (str "Adios " (first args)))
-      (recur (read-line))))
+  (let [name (first args)]
+    (println (str (greeting (get-hour-now)) name "!"))
+    (loop [line (read-line)]
+      (if (= "Stop!" line)
+        (println (str "Adios " name))
+        (do
+          (recur (read-line))))))
   )
