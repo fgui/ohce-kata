@@ -20,7 +20,7 @@
 
 (defn reset-output [] (reset! out []))
 
-(defn mock-get-hour-now []
+(defn mock-hour-now []
   @hour)
 
 (defn set-hour-now [h] (reset! hour h))
@@ -36,7 +36,7 @@
   (with-redefs
    [println mock-println
     read-line mock-read-line
-    ohce/get-hour-now mock-get-hour-now]
+    ohce/hour-now mock-hour-now]
 
     (testing "test-mock-works"
       (set-inputs! ["hello"])
