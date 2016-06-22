@@ -1,11 +1,11 @@
 (ns ohce.core)
 
-(defn get-hour-now []
+(defn hour-now []
   (.get (java.util.Calendar/getInstance) java.util.Calendar/HOUR_OF_DAY))
 
 (defn greeting [name]
   (str
-   (let [hour (get-hour-now)]
+   (let [hour (hour-now)]
      (cond
        (or (< hour 6) (>= hour 20)) "¡Buenas noches "
        (<= 6 hour 11) "¡Buenos días "
