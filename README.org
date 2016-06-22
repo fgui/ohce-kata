@@ -13,6 +13,8 @@ Even though it seems a silly application, **ohce** knows a thing or two.
 
 This is an example of using **ohce** during the morning:
 
+#+BEGIN_SRC
+
     $ ohce Pedro
     > ¡Buenos días Pedro!
     $ hola
@@ -24,3 +26,5 @@ This is an example of using **ohce** during the morning:
     > pots
     $ Stop!
     > Adios Pedro
+
+#+END_SRC
