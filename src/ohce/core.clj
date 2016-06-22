@@ -30,11 +30,10 @@
 (defn exit? [line]
   (= "Stop!" line))
 
-(defn main [& args]
-  (let [name (first args)]
-    (print-hello name)
-    (loop [line (read-line)]
-      (if (exit? line)
-        (print-goodbye name)
-        (do (print-oche line)
-            (recur (read-line)))))))
+(defn main [& [name]]
+  (print-hello name)
+  (loop [line (read-line)]
+    (if (exit? line)
+      (print-goodbye name)
+      (do (print-oche line)
+          (recur (read-line))))))
