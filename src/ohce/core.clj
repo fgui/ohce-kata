@@ -7,9 +7,7 @@
   (cond
     (or (< hour 6) (>= hour 20)) "¡Buenas noches "
     (<= 6 hour 11) "¡Buenos días "
-    (<= 12 hour 19) "¡Buenas tardes "
-    )
-  )
+    (<= 12 hour 19) "¡Buenas tardes "))
 
 (defn main [& args]
   (let [name (first args)]
@@ -18,5 +16,7 @@
       (if (= "Stop!" line)
         (println (str "Adios " name))
         (do
-          (recur (read-line))))))
-  )
+          (let [rev (apply str (reverse line))]
+            (println rev)
+            (when (= line rev) (println "¡Bonita palabra!")))
+          (recur (read-line)))))))

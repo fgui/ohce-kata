@@ -30,14 +30,14 @@
   (set-hour-now hour)
   (set-inputs! inputs)
   (ohce/main arg)
-  (is (= outputs (get-output)))
-  )
+  (is (= outputs (get-output))))
 
-(deftest a-ohce
+(deftest test-ohce
   (with-redefs
-    [println mock-println
-     read-line mock-read-line
-     ohce/get-hour-now mock-get-hour-now]
+   [println mock-println
+    read-line mock-read-line
+    ohce/get-hour-now mock-get-hour-now]
+
     (testing "test-mock-works"
       (set-inputs! ["hello"])
       (println (read-line))
@@ -56,7 +56,17 @@
         (test-input-output "Francesc" 11 ["Stop!"] ["¡Buenos días Francesc!" "Adios Francesc"])
         (test-input-output "Francesc" 12 ["Stop!"] ["¡Buenas tardes Francesc!" "Adios Francesc"])
         (test-input-output "Francesc" 14 ["Stop!"] ["¡Buenas tardes Francesc!" "Adios Francesc"])
-        (test-input-output "Francesc" 19 ["Stop!"] ["¡Buenas tardes Francesc!" "Adios Francesc"])
-        ))
+        (test-input-output "Francesc" 19 ["Stop!"] ["¡Buenas tardes Francesc!" "Adios Francesc"])))
 
-    ))
+    (testing "Full test"
+      (test-input-output "Pedro" 20
+                         ["hola"
+                          "oto"
+                          "stop"
+                          "Stop!"]
+                         ["¡Buenas noches Pedro!"
+                          "aloh"
+                          "oto"
+                          "¡Bonita palabra!"
+                          "pots"
+                          "Adios Pedro"]))))
