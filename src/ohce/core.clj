@@ -5,9 +5,9 @@
 
 (defn greeting-hour [hour]
   (cond
-    (or (< hour 6) (>= hour 20)) "Buenas noches"
     (<= 6 hour 11) "Buenos días"
-    (<= 12 hour 19) "Buenas tardes"))
+    (<= 12 hour 19) "Buenas tardes"
+    :else "Buenas noches"))
 
 (defn greeting [name]
   (str

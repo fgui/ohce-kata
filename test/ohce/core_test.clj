@@ -6,21 +6,21 @@
 (def out (atom []))
 (def hour (atom 0))
 
-(defn mock-read-line []
+(defn stub-read-line []
   (let [l (first @in)]
     (reset! in (rest @in))
     l))
 
 (defn set-inputs! [inputs] (reset! in inputs))
 
-(defn mock-println [s]
+(defn stub-println [s]
   (swap! out conj s))
 
 (defn get-output [] @out)
 
 (defn reset-output [] (reset! out []))
 
-(defn mock-hour-now []
+(defn stub-hour-now []
   @hour)
 
 (defn set-hour-now [h] (reset! hour h))
@@ -34,11 +34,12 @@
 
 (deftest test-ohce
   (with-redefs
-   [println mock-println
-    read-line mock-read-line
-    ohce/hour-now mock-hour-now]
+   [println stub-println
+    read-line stub-read-line
+    ohce/hour-now stub-hour-now]
 
-    (testing "test-mock-works"
+    (testing "test-stub-works"
+      (reset-output)
       (set-inputs! ["hello"])
       (println (read-line))
       (is (= ["hello"] (get-output)))
