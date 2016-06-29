@@ -38,7 +38,7 @@
     read-line stub-read-line
     ohce/hour-now stub-hour-now]
 
-    (testing "test-stub-works"
+    (testing "test stubs for test"
       (reset-output)
       (set-inputs! ["hello"])
       (println (read-line))
@@ -46,20 +46,18 @@
       (println "world")
       (is (= ["hello" "world"] (get-output))))
 
-    (testing "greetings"
+    (testing "greetings depend on hour e2e"
       (testing "Testing hours"
-        (test-input-output "Francesc" 20 ["Stop!"] ["¡Buenas noches Francesc!" "Adios Francesc"])
-        (test-input-output "Francesc" 21 ["Stop!"] ["¡Buenas noches Francesc!" "Adios Francesc"])
-        (test-input-output "Francesc" 5 ["Stop!"] ["¡Buenas noches Francesc!" "Adios Francesc"])
-        (test-input-output "Francesc" 0 ["Stop!"] ["¡Buenas noches Francesc!" "Adios Francesc"])
-        (test-input-output "Francesc" 6 ["Stop!"] ["¡Buenos días Francesc!" "Adios Francesc"])
-        (test-input-output "Francesc" 9 ["Stop!"] ["¡Buenos días Francesc!" "Adios Francesc"])
-        (test-input-output "Francesc" 11 ["Stop!"] ["¡Buenos días Francesc!" "Adios Francesc"])
-        (test-input-output "Francesc" 12 ["Stop!"] ["¡Buenas tardes Francesc!" "Adios Francesc"])
-        (test-input-output "Francesc" 14 ["Stop!"] ["¡Buenas tardes Francesc!" "Adios Francesc"])
-        (test-input-output "Francesc" 19 ["Stop!"] ["¡Buenas tardes Francesc!" "Adios Francesc"])))
+        (letfn [(test-greeting [hours greet]
+                  (doseq [hour hours]
+                    (test-input-output
+                     "Name" hour ["Stop!"] [(str "¡" greet " Name!") "Adios Name"]))
+                  )]
+          (test-greeting [20 21 4 5] "Buenas noches")
+          (test-greeting [6 9 11] "Buenos días")
+          (test-greeting [12 14 19] "Buenas tardes"))))
 
-    (testing "end 2 end test"
+    (testing "end 2 end test given sample"
       (test-input-output "Pedro" 20
                          ["hola"
                           "oto"
