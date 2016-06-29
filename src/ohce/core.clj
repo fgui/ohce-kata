@@ -34,7 +34,21 @@
 (defn exit? [line]
   (= "Stop!" line))
 
+(defn lines []
+  (letfn [(rd []
+            (let [line (read-line)]
+              (if (exit? line)
+                nil
+                (cons line (lazy-seq (rd))))))]
+    (rd)))
+
 (defn main [& [name]]
+  (print-hello name)
+  (doseq [l (lines)]
+    (print-oche l))
+  (print-goodbye name))
+
+(defn main-recur [& [name]]
   (print-hello name)
   (loop [line (read-line)]
     (if (exit? line)

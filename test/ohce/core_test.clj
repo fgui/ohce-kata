@@ -59,7 +59,7 @@
         (test-input-output "Francesc" 14 ["Stop!"] ["¡Buenas tardes Francesc!" "Adios Francesc"])
         (test-input-output "Francesc" 19 ["Stop!"] ["¡Buenas tardes Francesc!" "Adios Francesc"])))
 
-    (testing "Full test"
+    (testing "end 2 end test"
       (test-input-output "Pedro" 20
                          ["hola"
                           "oto"
